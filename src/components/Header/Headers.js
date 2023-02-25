@@ -1,10 +1,10 @@
 import "./Header.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from 'react-bootstrap/Nav';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import Nav                                        from 'react-bootstrap/Nav';
+import Dropdown                                   from 'react-bootstrap/Dropdown';
+import DropdownButton                             from 'react-bootstrap/DropdownButton';
+import { useState, useEffect }                    from "react";
+import { Link, useNavigate }                      from "react-router-dom";
 
 
 
@@ -15,8 +15,6 @@ const Header = ({ token }) => {
 
   useEffect(() => {
     settokens(localStorage.getItem('token'))
-
-    console.log("::::::authToken", token)
   }, [])
 
 
@@ -26,13 +24,8 @@ const Header = ({ token }) => {
   }
 
 
-
-
   return (
     <>
-      {/* <header> */}
-
-
       <Nav style={{ justifyContent: "center" }} variant="tabs" defaultActiveKey="/home">
         <div className='Header-tab'>
           <Nav.Item style={{ padding: "5px" }}>
@@ -42,22 +35,17 @@ const Header = ({ token }) => {
             </DropdownButton>
           </Nav.Item>
           <Nav.Item style={{ padding: "5px" }}>
-            {/* <Nav.Link > */}
             <Link to="/list-itme" style={{ textDecorationLine: "none" }}>
               List Item
             </Link>
-            {/* </Nav.Link> */}
           </Nav.Item>
           <Nav.Item style={{ padding: "5px" }}>
-            {/* <Nav.Link> */}
             <Link to="/add-item" style={{ textDecorationLine: "none" }}>
               Add Item
             </Link>
-            {/* </Nav.Link> */}
           </Nav.Item>
         </div>
       </Nav>
-      {/* </header> */}
     </>
   );
 };

@@ -1,13 +1,13 @@
-import React from 'react'
 import './login.css'
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import setAuthToken from '../api/authtoken';
+import React                                                    from 'react'
+import { useState }                                             from "react";
+import { Link, useNavigate }                                    from "react-router-dom";
+import Button                                                   from 'react-bootstrap/Button';
+import Form                                                     from 'react-bootstrap/Form';
+import axios                                                    from 'axios';
+import { toast, ToastContainer }                                from 'react-toastify';
+import setAuthToken                                             from '../api/authtoken';
 
 
 function Signup() {
