@@ -1,13 +1,13 @@
 import './login.css';
-import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import MyContext from './MyContext';
-import setAuthToken from '../api/authtoken';
+import { useState, useContext }                                         from "react";
+import { Link, useNavigate }                                            from "react-router-dom";
+import Button                                                           from 'react-bootstrap/Button';
+import Form                                                             from 'react-bootstrap/Form';
+import {toast, ToastContainer}                                          from 'react-toastify';
+import axios                                                            from 'axios';
+import MyContext                                                        from './MyContext';
+import setAuthToken                                                     from '../api/authtoken';
 
 const Home = () => {
     const [email, setEmail] = useState("");

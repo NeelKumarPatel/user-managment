@@ -1,11 +1,11 @@
 import './login.css'
-import React, { useEffect, useState, useContext } from 'react'
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import api from '../api'
-import MyContext from './MyContext';
+import React, { useEffect, useState, useContext }           from 'react'
+import Button                                               from 'react-bootstrap/Button';
+import Table                                                from 'react-bootstrap/Table';
+import Form                                                 from 'react-bootstrap/Form';
+import Modal                                                from 'react-bootstrap/Modal';
+import api                                                  from '../api'
+import MyContext                                            from './MyContext';
 
 export default function List() {
     const [responseData, setResponseData] = useState([])
@@ -39,25 +39,20 @@ export default function List() {
         api.getData(myValue)
             .then(response => {
                 setResponseData(response.data.item)
-                console.log(response.data.item);
             })
             .catch(error => {
                 if (error.response) {
-                    // The server returned an error response (4xx or 5xx)
                     console.error(error.response.data);
                     console.error(error.response.status);
                     console.error(error.response.headers);
                 } else if (error.request) {
-                    // The request was made but no response was received
                     console.error(error.request);
                 } else {
-                    // Something happened in setting up the request that triggered an Error
                     console.error('Error', error.message);
                 }
             });
     }
     const deleteItem = (data) => {
-        console.log("darta", data._id)
         api.deleteData(data._id).then(response => {
             console.log(response);
             fetchData();
@@ -81,7 +76,7 @@ export default function List() {
             name: name,
             price: price,
             description: description,
-            user_id: "63f8eafebfc0e4a524816684"
+            user_id: myValue
         }
         await api.editData(currentId, newData);
         handleClose();
@@ -89,14 +84,6 @@ export default function List() {
     }
 
     const sortByProperty = (property) => {
-        // const sortedData = [...responseData].sort((a, b) => {
-        //   if (sortOrder === 'asc') {
-        //     return a.name - b.name;
-        //   } else {
-        //     return b.name - a.name;
-        //   }
-        // });
-
         const sortedData = responseData.sort((a, b) => {
             if (sortOrder === 'asc') {
                 if (a[property] < b[property]) {
@@ -117,7 +104,6 @@ export default function List() {
             }
 
         });
-        console.log("sortedData", sortedData);
         setResponseData(sortedData);
         setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     };

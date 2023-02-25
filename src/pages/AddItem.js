@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import {  useNavigate } from 'react-router-dom';
-import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import api from '../api';
+import React, { useState, useEffect }                       from 'react';
+import Button                                               from 'react-bootstrap/Button';
+import Card                                                 from 'react-bootstrap/Card';
+import Form                                                 from 'react-bootstrap/Form';
+import {  useNavigate }                                     from 'react-router-dom';
+import {toast, ToastContainer}                              from 'react-toastify';
+import api                                                  from '../api';
 
 function AddItem() {
     const [price, setPrice] = useState()
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [userId, setUserId] = useState("")
+    const navigate = useNavigate();
 
     useEffect(() => {
       const id = localStorage.getItem("user_id")
@@ -19,7 +20,6 @@ function AddItem() {
     }, [])
     
 
-const navigate = useNavigate();
 
     const submitForm = async (e) => {
         e.preventDefault();
@@ -41,23 +41,17 @@ const navigate = useNavigate();
         }
         await api.postData(newData)
             .then(response => {
-                // setResponseData(response.data.item)
-                console.log(response);
-
                 resetData();
                 navigate('/list-itme')
             })
             .catch(error => {
                 if (error.response) {
-                    // The server returned an error response (4xx or 5xx)
                     console.error(error.response.data);
                     console.error(error.response.status);
                     console.error(error.response.headers);
                 } else if (error.request) {
-                    // The request was made but no response was received
                     console.error(error.request);
                 } else {
-                    // Something happened in setting up the request that triggered an Error
                     console.error('Error', error.message);
                 }
             });
