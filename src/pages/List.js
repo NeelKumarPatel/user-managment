@@ -1,11 +1,12 @@
 import './login.css'
-import React, { useEffect, useState, useContext }           from 'react'
-import Button                                               from 'react-bootstrap/Button';
-import Table                                                from 'react-bootstrap/Table';
-import Form                                                 from 'react-bootstrap/Form';
-import Modal                                                from 'react-bootstrap/Modal';
-import api                                                  from '../api'
-import MyContext                                            from './MyContext';
+import React, { useEffect, useState, useContext } from 'react'
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import api from '../api'
+import MyContext from './MyContext';
+import axios from 'axios';
 
 export default function List() {
     const [responseData, setResponseData] = useState([])
@@ -132,6 +133,9 @@ export default function List() {
 
         setResponseData(filtered);
     };
+    const downloadCSV = async () => {
+      const data =  await axios.get("http://localhost:5000/csv/download")
+    }
     return (
         <div style={{ height: "92vh", padding: "15px" }}>
             <>
@@ -176,14 +180,22 @@ export default function List() {
                     </Modal.Footer>
                 </Modal>
             </>
-
-            <input
-                type="text"
-                placeholder="Search..."
-                value={query}
-                onChange={handleInputChange}
-            />
-
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+                alignItems: "center",
+                margin:"10px"
+            }}>
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    value={query}
+                    onChange={handleInputChange}
+                />
+                <Button variant="primary" onClick={downloadCSV}>Download CSV</Button>
+            </div>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
